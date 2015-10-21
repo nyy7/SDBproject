@@ -29,7 +29,7 @@ class accSpider(Spider):
 			acc_url = "http://accidentdatacenter.com"
 			for temp in tempurl:
 				acc_url += temp.encode('ascii','ignore')
-			print "==================" + acc_url
+			#print "==================" + acc_url
 			yield Request(acc_url, callback=self.acc_parse)
 		if response.url.find('?page=') == -1:
 			requests += createPages(self,response)
@@ -65,6 +65,11 @@ class accSpider(Spider):
 			date += d.encode('ascii','ignore')
 		item['date'] = date
 		item['link'] = response.url
+		desctemp = sel1.xpath('.//div[@class="field-item even"]/p/text()').extract()
+		desc = ""
+		for d in desctemp:
+			desc += d.encode('ascii','ignore')
+		item['description'] = desc
 		return item
 
 

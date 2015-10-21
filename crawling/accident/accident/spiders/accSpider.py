@@ -65,7 +65,21 @@ class accSpider(Spider):
 			date += d.encode('ascii','ignore')
 		item['date'] = date
 		item['link'] = response.url
-		desctemp = sel1.xpath('.//div[@class="field-item even"]/p/text()').extract()
+		#print item['link']
+		desctemp = sel1.xpath('//div[@class="field-item even"]/p/text()').extract()
+		if not desctemp:
+			#print "1@@@@@@@@@@@@@@@@@@@@@@@@1"
+			desctemp = sel1.xpath('.//div[@class="field field-name-body"]/p/text()').extract()
+			print desctemp
+			if not desctemp:
+				#print "2@@@@@@@@@@@@@@@@@@@@@@@@@2"
+				desctemp = sel1.xpath('//div[@class="field field-name-field-description"]/p/text()').extract()
+				#print desctemp
+				if not desctemp:
+					#print "3@@@@@@@@@@@@@@@@@@@@@@3"
+					desctemp = sel1.xpath('//title/text()').extract()
+					#print desctemp
+					#print "============================"
 		desc = ""
 		for d in desctemp:
 			desc += d.encode('ascii','ignore')

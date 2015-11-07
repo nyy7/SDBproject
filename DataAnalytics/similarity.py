@@ -72,7 +72,7 @@ class AccidentSimilarity:
 			tag = strToList(self.tags[i])
 			diff = hamming_distance(tag,curr_tag)
 			dist = self.dists[i]
-			print diff, dist
+			#print diff, dist
 		# add distance weight to result
 			sim = 1/(diff + 0.4 * dist)
 			key_index = info[i]
@@ -97,12 +97,17 @@ print sorted_info
 
 
 # test dpquery and similarity
-pg = dbquery.PGclient([63,75],(-70,40))
-curr_tag = "0100000010000"
-sim = AccidentSimilarity(pg.topic,curr_tag,pg.distance)
-sim.distance_normalization()
-info = sim.similarity_computing(pg.info)
-for i in range(3):
-	print info[len(info)-i - 1][0],info[len(info)-i - 1][1]
+def test():
+	pg = dbquery.PGclient([63,75],(-70,40))
+	curr_tag = "0100000010000"
+	sim = AccidentSimilarity(pg.topic,curr_tag,pg.distance)
+	sim.distance_normalization()
+	info = sim.similarity_computing(pg.info)
+	result = []
+	for i in range(3):
+		result.append(info[len(info)-i - 1])
+	return result
+
+#print test()
 
 

@@ -1,5 +1,7 @@
 from math import *
 import numpy as np
+import operator
+import dbquery
 
 # convert string to list of integer
 def strToList(s):
@@ -46,14 +48,10 @@ print "cosine similarity:", cosine_similarity(x,y)
 ## the tag bitstring for selected historical accidents, tags;
 ## the tag bitstring for current accident, curr_tag
 class AccidentSimilarity:
-	def __init__(self, geos, tags, curr_geo, curr_tag):
+	def __init__(self, tags, curr_tag, distance):
 		self.tags = tags
 		self.curr_tag = curr_tag
-		dist_temp = []
-		for tup in geos:
-			dist_temp.append(sqrt(pow(tup[1]-curr_geo[1],2)\
-					pow(tup[2]-curr_geo[2],2)))
-		self.dists = dist_temp
+		self.dists = distance
 
 
 	# normalize the distance array, self.dists
@@ -67,23 +65,44 @@ class AccidentSimilarity:
 	
 
 # this function is to calculate the similarity between current accident and selected accidents
-## arrTag is an array containing bitstrings for selected candidates
-## arrayD is a array containing normalized distances from historical acc to current acc
-## s is the tag bit string for current acc
-	def similarity_computing(self):
-		similarity = []
+	def similarity_computing(self,info):
+		result = {}
 		curr_tag = strToList(self.curr_tag)
 		for i in range(len(self.tags)):
 			tag = strToList(self.tags[i])
-			sim = hamming_distance(tag,curr_tag)
+			diff = hamming_distance(tag,curr_tag)
 			dist = self.dists[i]
+			print diff, dist
 		# add distance weight to result
-			result = sim - 0.9 * dist
-			similarity.append(result)
-		return similarity
+			sim = 1/(diff + 0.4 * dist)
+			key_index = info[i]
+			result[key_index] = sim
+		# sort info by similarity
+		sorted_info = sorted(result.items(), key=operator.itemgetter(1))
+		return sorted_info
 
 
+'''
+# test AccidentSimilarity
+tags = ["1010","0110","0011","1000"]
+distance = [10,20,25,10]
+curr_tag = "0100"
+info = [(1,"haha"),(2,"xiix"),(3,"haha"),(4,"xixi")]
+
+sim1 = AccidentSimilarity(tags,curr_tag,distance)
+sim1.distance_normalization()
+sorted_info = sim1.similarity_computing(info)
+print sorted_info
+'''
 
 
+# test dpquery and similarity
+pg = dbquery.PGclient([63,75],(-70,40))
+curr_tag = "0100000010000"
+sim = AccidentSimilarity(pg.topic,curr_tag,pg.distance)
+sim.distance_normalization()
+info = sim.similarity_computing(pg.info)
+for i in range(3):
+	print info[len(info)-i - 1][0],info[len(info)-i - 1][1]
 
 

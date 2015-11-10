@@ -5,7 +5,7 @@ class PGclient:
 		conn = psycopg2.connect(database = "accident", user="root",password="Cs6604GIS", host="52.89.116.42", port="5432")
 		#print "open database succesfully"
 		cur = conn.cursor()
-		sql_select = "SELECT DISTINCT id,road,city,link,bit13,ST_Distance(geocenter::geometry::Geography,"
+		sql_select = "SELECT DISTINCT id,road,city,link,bit13,ST_Distance_Sphere(geocenter::geometry::Geography,"
 		sql_select += "point"+str(geo)+"::geometry::Geography)"
 		sql_from = " FROM accident13, casetopic WHERE id=caseid and geocenter is not null and (topicid = "+str(topics[0])
 		
@@ -13,7 +13,7 @@ class PGclient:
 			sql_from += " OR topicid = "+str(topics[i+1])
 		sql_from += ")"
 		sql = sql_select + sql_from
-		print sql
+		#print sql
 
 		cur.execute(sql)		
 		matchdata = cur.fetchall()
@@ -26,6 +26,9 @@ class PGclient:
 			self.info.append(row[:4])
 			self.topic.append(row[4])
 			self.distance.append(row[5])
+
+		if conn:
+			conn.close()
 
 '''
 pg = PGclient([63,75],(-70,40))

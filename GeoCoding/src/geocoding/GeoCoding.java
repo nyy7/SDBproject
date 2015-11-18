@@ -42,7 +42,7 @@ public class GeoCoding {
         String password = "Cs6604GIS";
 
         // query sentences
-        String query1 = "select road, city from accident where id=1";
+        String query1 = "select road,city from accident where id=1; ";
         ResultSet resultset = null;
         String address = null;
 

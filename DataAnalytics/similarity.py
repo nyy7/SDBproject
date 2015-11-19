@@ -51,35 +51,40 @@ class AccidentSimilarity:
 	def __init__(self, tags, curr_tag, distance):
 		self.tags = tags
 		self.curr_tag = curr_tag
-		self.dists = distance
-
+		hamming=[]
+		for tag in tags:
+			tagList = strToList(tag)
+			diff = hamming_distance(tag,curr_tag)
+			hamming.append(diff)
+		self.dists = self.distance_normalization(distance)
+		self.hamming = self.distance_normalization(hamming)
 
 	# normalize the distance array, self.dists
-	def distance_normalization(self):
+	def distance_normalization(self,d):
 		#transform to np array
-		dists = np.array(self.dists)
+		dists = np.array(d)
 		# mean center the data
-		self.dists -= np.mean(dists,axis=0)
+		d -= np.mean(dists,axis=0)
 		# divide by the standard deviation
-		self.dists /= np.std(dists,axis=0) 
+		d /= np.std(dists,axis=0) 
+		return d
 	
 
 # this function is to calculate the similarity between current accident and selected accidents
 	def similarity_computing(self,info):
-		result = {}
-		curr_tag = strToList(self.curr_tag)
-		for i in range(len(self.tags)):
-			tag = strToList(self.tags[i])
-			diff = hamming_distance(tag,curr_tag)
+		results = {}
+		
+		for i in range(len(self.dists)):
+			diff = self.hamming[i]
 			dist = self.dists[i]
-			#print diff, dist
-		# add distance weight to result
-			sim = 1/(diff + 0.4 * dist)
+			sim = -(diff + 0.9 * dist)
+			
 			key_index = info[i]
-			result[key_index] = sim
+			results[key_index] = sim
 		# sort info by similarity
-		sorted_info = sorted(result.items(), key=operator.itemgetter(1))
+		sorted_info = sorted(results.items(), key=operator.itemgetter(1))
 		return sorted_info
+
 
 
 '''
@@ -90,24 +95,8 @@ curr_tag = "0100"
 info = [(1,"haha"),(2,"xiix"),(3,"haha"),(4,"xixi")]
 
 sim1 = AccidentSimilarity(tags,curr_tag,distance)
-sim1.distance_normalization()
 sorted_info = sim1.similarity_computing(info)
-print sorted_info
+print sorted_info[-3:]
 '''
-
-
-# test dpquery and similarity
-def test():
-	pg = dbquery.PGclient([63,75],(-70,40))
-	curr_tag = "0100000010000"
-	sim = AccidentSimilarity(pg.topic,curr_tag,pg.distance)
-	sim.distance_normalization()
-	info = sim.similarity_computing(pg.info)
-	result = []
-	for i in range(3):
-		result.append(info[len(info)-i - 1])
-	return result
-
-#print test()
 
 

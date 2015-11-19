@@ -13,6 +13,9 @@ def ToXML(matchdata):
 		city.text = row[0][2]
 		url = SubElement(accident,"LINK")
 		url.text = row[0][3]
+		timestamp = SubElement(accident,"TIME")
+		datetime = row[0][4]
+		timestamp.text = datetime.strftime('%m/%d/%Y')
 		similarity = SubElement(accident,"SIMILARITY")
 		similarity.text = str(row[1])
 	print tostring(root)

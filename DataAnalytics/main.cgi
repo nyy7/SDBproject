@@ -1,15 +1,13 @@
+#!/usr/bin/python
+print('Content-type: text/html\r\n\r')
+
 import dbquery
 import similarity
 import toXML
 import reportdb
 import toBit
 import geocoding
-
-'''
-topics = [63,75]
-curr_geo = (-70,40)
-curr_tag = "0100000010000"
-'''
+cgitb.enable()
 
 # executable function, input is topic array, client geolocation and 13-bit string tags for client. Output is XML
 
@@ -35,7 +33,13 @@ def main(road,city,state,time,topics):
 
 
 
-
-#example:
-main("I66","Fairfax","VA","2015-11-18 13:33:00",[63])
+if __name__=="__main__":
+	form = cgi.FieldStorage()
+	road = form["road"].value
+	city = form["city"].value
+	state = form["state"].value
+	time = form["time"].value
+	topics = form["topics"].value
+	topics = topics.split(',')
+	main(road,city,state,time,topics)
 

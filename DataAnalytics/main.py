@@ -33,9 +33,15 @@ def main(road,city,state,time,topics):
 		#print info[len(info)-i-1]
 	print toXML.ToXML(results)
 
-
-
+if __name__=="__main__":
+    road = sys.argv[1]
+    city = sys.argv[2]
+    state = sys.argv[3]    
+    time = sys.argv[4]
+    topics = sys.argv[5]
+    topics = topic.split(',')
+    main(road,city,state,time,topics)
 
 #example:
-main("I66","Fairfax","VA","2015-11-18 13:33:00",[63])
+#main("I66","Fairfax","VA","2015-11-18 13:33:00",[63])
 

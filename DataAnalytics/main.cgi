@@ -7,6 +7,8 @@ import toXML
 import reportdb
 import toBit
 import geocoding
+import cgi
+import cgitb
 cgitb.enable()
 
 # executable function, input is topic array, client geolocation and 13-bit string tags for client. Output is XML

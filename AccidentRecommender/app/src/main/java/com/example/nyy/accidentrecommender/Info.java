@@ -1,6 +1,7 @@
 package com.example.nyy.accidentrecommender;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nyy on 11/12/15.
@@ -11,7 +12,7 @@ public class Info {
     private String city;
     private String road;
     private String topics;
-    private String url;
+    private String time;
 
     public int get_caseId(){return caseId;}
     public void set_caseId(int caseId){this.caseId = caseId;}
@@ -22,13 +23,16 @@ public class Info {
     public String get_road(){return road;}
     public void set_road(String road){this.road = road;}
     public String get_topics(){return topics;}
-    public void set_topics(ArrayList<String> topics){
-        this.topics = topics.get(0);
+    public void set_topics(List<Integer> topics){
+        this.topics = ""+topics.get(0);
         for (int i = 1; i < topics.size(); i++) {
-            this.topics += "&" + topics.get(i);
+            this.topics += "%2C" + topics.get(i);
         }
     }
-    public String get_url(){return url;}
-    public void set_url(String url){this.url = url;}
+    public String get_time(){return time;}
+    public void set_time(String time){
+        time = time.replace(" ","%20");
+        this.time = time;
+    }
 
 }

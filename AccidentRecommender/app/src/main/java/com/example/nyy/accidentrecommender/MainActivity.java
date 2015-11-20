@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends Activity {
@@ -39,7 +40,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void toRecommendation(){
+    public void toRecommend(View view){
         Intent recommendation_intent = new Intent(this,ReportActivity.class);
         startActivity(recommendation_intent);
 

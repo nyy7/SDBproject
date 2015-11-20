@@ -17,3 +17,4 @@ class AccidentItem(scrapy.Item):
 	area = scrapy.Field()
 	date = scrapy.Field()
 	link = scrapy.Field()
+	description = scrapy.Field()

@@ -19,9 +19,13 @@ public class Info {
     public String get_state(){return state;}
     public void set_state(String state){this.state = state;}
     public String get_city(){return city;}
-    public void set_city(String city){this.city = city;}
+    public void set_city(String city){
+        this.city = city.replace(" ","%20");
+    }
     public String get_road(){return road;}
-    public void set_road(String road){this.road = road;}
+    public void set_road(String road){
+        this.road = road.replace(" ","%20");
+    }
     public String get_topics(){return topics;}
     public void set_topics(List<Integer> topics){
         this.topics = ""+topics.get(0);

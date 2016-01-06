@@ -6,8 +6,8 @@ import json
 def geocode(road,city,state):
 	url = "https://maps.googleapis.com/maps/api/geocode/json?address="
 	road = road.replace(" ","%20")
-	city = city.replace(" ","%20")
-	address = road +"," +city+","+state
+        city = city.replace(" ","%20")
+        address = road +"," +city+","+state
 	address=address.decode('utf-8','ignore')
 	url += address
 	route = "route"
@@ -26,4 +26,4 @@ def geocode(road,city,state):
 	result = (lng,lat)
 	return result
 
-print geocode("I66","Falls Church","VA")
+#print geocode("I66","Fairfax","VA")

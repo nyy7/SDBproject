@@ -1,5 +1,7 @@
 package com.yanglingou.accident;
 
+import android.util.Log;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -33,13 +35,15 @@ public class Top3Info_XMLParser {
                         if (currentTagName.equals("Accident")) {
                             inDataItemTag = true;
                             top3Info = new Top3Info();
+                            //System.out.println("accident works");
                             top3Infos.add(top3Info);
                         }
                         break;
 
                     case XmlPullParser.END_TAG:
-                        if (parser.getName().equals("/Accident")) {
+                        if (parser.getName().equals("Accident")) {
                             inDataItemTag = false;
+                            //System.out.println("/Accident works");
                         }
                         currentTagName = "";
                         break;
@@ -51,16 +55,19 @@ public class Top3Info_XMLParser {
                                     top3Info.set_caseId(Integer.parseInt(parser.getText()));
                                     break;
                                 case "ROAD":
+                                    Log.d("Yanyan", parser.getText());
                                     top3Info.set_road(parser.getText());
                                     break;
                                 case "CITY":
-                                    String city_state = parser.getText();
-                                    String[] cs = city_state.split(",");
-                                    top3Info.set_city(cs[0]);
-                                    top3Info.set_state(cs[1]);
+                                    Log.d("Yanyan",parser.getText());
+                                    top3Info.set_city(parser.getText());
                                     break;
                                 case "LINK":
                                     top3Info.set_link(parser.getText());
+                                    break;
+                                case "TIME":
+                                    Log.d("Yanyan",parser.getText());
+                                    top3Info.set_date(parser.getText());
                                     break;
                                 case "SIMILARITY":
                                     top3Info.set_similarity(Double.parseDouble(parser.getText()));
@@ -75,10 +82,12 @@ public class Top3Info_XMLParser {
                 eventType = parser.next();
 
             }
-
+            if(top3Infos.get(0) == null) Log.d("Yanyan", "XML is null");
+            else Log.d("Yanyan", top3Infos.get(0).get_city());
             return top3Infos;
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d("Yanyan",e.toString());
             return null;
         }
     }

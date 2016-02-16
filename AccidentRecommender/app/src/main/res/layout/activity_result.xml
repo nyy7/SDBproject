@@ -12,12 +12,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="5dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/imageView2"
-            android:src="@drawable/the_road_ahead_1920x1200_best_twitter_backgrounds" />
     </FrameLayout>
 
     <TableLayout
@@ -26,13 +20,14 @@
         android:paddingTop="40dp">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:paddingTop="30dp">
 
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Case I:"
                 android:id="@+id/textView_id1"
@@ -41,13 +36,13 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_address1"
                 android:textColor="#ffffffff" />
 
             <TextView
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_time1"
                 android:textColor="#ffffffff" />
@@ -63,12 +58,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp">
 
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Case II:"
                 android:id="@+id/textView_id2"
@@ -77,13 +73,13 @@
                 android:textSize="18dp" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_address2"
                 android:textColor="#ffffffff" />
 
             <TextView
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_time2"
                 android:textColor="#ffffffff" />
@@ -99,13 +95,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:paddingTop="30dp">
 
             <TextView
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Case III:"
                 android:id="@+id/textView_id3"
@@ -114,13 +111,13 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_address3"
                 android:textColor="#ffffffff" />
 
             <TextView
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_time3"
                 android:textColor="#ffffffff" />

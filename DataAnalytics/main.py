@@ -31,7 +31,7 @@ def main(road,city,state,time,topics):
 	for i in range(3):
 		results.append(info[len(info)-i-1])
 		#print info[len(info)-i-1]
-	print toXML.ToXML(results)
+        print toXML.ToXML(results)
 
 if __name__=="__main__":
     road = sys.argv[1]

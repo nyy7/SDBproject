@@ -18,7 +18,7 @@ def ToXML(matchdata):
 		timestamp.text = datetime.strftime('%m/%d/%Y')
 		similarity = SubElement(accident,"SIMILARITY")
 		similarity.text = str(row[1])
-	print tostring(root)
+	return tostring(root)
 
 
 

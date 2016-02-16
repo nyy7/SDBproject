@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="scope_array">
+        <item>50 miles</item>
+        <item>100 miles</item>
+        <item>200 miles</item>
+    </string-array>
+</resources>

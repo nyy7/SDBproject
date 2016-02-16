@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <TextView android:text="Welcome to Accident Recommender" android:layout_width="match_parent"
+    <TextView android:text="Welcome to Accident Guider" android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textview_appname"
         android:textColor="#fffffd97"

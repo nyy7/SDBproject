@@ -6,4 +6,8 @@
     <string name="title_activity_report">ReportActivity</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_heat_maps">Map</string>
+    <string name="title_activity_map_form">MapForm</string>
+    <string name="title_activity_cluster_map">Map</string>
+
 </resources>

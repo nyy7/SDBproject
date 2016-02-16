@@ -47,6 +47,18 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
+        <activity
+            android:name=".HeatMapsActivity"
+            android:label="@string/title_activity_heat_maps" >
+        </activity>
+        <activity
+            android:name=".MapForm"
+            android:label="@string/title_activity_map_form" >
+        </activity>
+        <activity
+            android:name=".ClusterMapActivity"
+            android:label="@string/title_activity_cluster_map" >
+        </activity>
     </application>
 
 </manifest>

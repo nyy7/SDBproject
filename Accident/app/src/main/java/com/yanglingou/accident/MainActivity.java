@@ -44,8 +44,9 @@ public class MainActivity extends Activity {
         startActivity(recommendation_intent);
 
     }
+
     public void toMap(View view){
-        Intent recommendation_intent = new Intent(this,MapsActivity.class);
+        Intent recommendation_intent = new Intent(this,MapForm.class);
         startActivity(recommendation_intent);
 
     }
